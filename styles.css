@@ -1,0 +1,61 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+    font-family: 'Press Start 2P', cursive;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+.container {
+    width: 500px;
+    max-width: 80%;
+    background-color: #71aaca;
+    border-radius: 10px;
+    border: 3px solid black;
+    padding: 40px;
+    box-shadow: 0 0 20px 3px;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#start-btn {
+   padding: 15px;
+   margin: 15px;
+   box-shadow: 0 0 20px 3px;
+}
+
+#start-btn:hover {
+    border-color: black;
+}
+
+.btn {
+    box-shadow: 0 0 5px;
+    padding: 15px;
+    margin: 15px;
+
+}
+.btn:hover {
+    border-color: black;
+}
+
+h1 {
+    text-align: center;
+}
+.answer-btns-box {
+    display: grid;
+}
+
+.hide {
+    display: none;
+}
