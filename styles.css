@@ -4,6 +4,7 @@
 }
 
 body {
+    position: relative;
     margin: 0;
     padding: 0;
     display: flex;
@@ -58,4 +59,13 @@ h1 {
 
 .hide {
     display: none;
+}
+
+p {
+    position: absolute;
+    background-color: white;
+    padding: 10px;
+    top: 8px;
+    right: 16px;
+    font-size: 30px;
 }
