@@ -7,75 +7,6 @@ var answerChoiceC = document.getElementById("C");
 var answerChoiceD = document.getElementById("D");
 var currentQuestion = 0;
 var score = 0;
-
-// Timer
-var countDown = document.getElementById("countdown");
-
-var i = 60;
-
-function count() {
-    i--;
-    countDown.textContent = i;
-}
-
-setInterval(count, 1000);
-
-
-startBtn.addEventListener("click", startGame);
-answerChoiceA.addEventListener("click", checkAnswer);
-answerChoiceB.addEventListener("click", checkAnswer);
-answerChoiceC.addEventListener("click", checkAnswer);
-answerChoiceD.addEventListener("click", checkAnswer);
-
-function startGame() {
-    startBtn.classList.add("hide");
-    questionContainer.classList.remove("hide");
-    getQuestion1();
-}
-
-function getQuestion1() {
-    var q = questionList[currentQuestion];
-    questionElement.textContent = q.question;
-    questionElement.setAttribute("style", "padding:15px");
-    questionElement.setAttribute("style", "font-size:20px")
-    answerChoiceA.textContent = q.answerA;
-    answerChoiceB.textContent = q.answerB;
-    answerChoiceC.textContent = q.answerC;
-    answerChoiceD.textContent = q.answerD;
-}
-
-function getQuestion2() {
-    var q = questionList[currentQuestion + 1];
-    questionElement.textContent = q.question;
-    questionElement.setAttribute("style", "padding:15px");
-    questionElement.setAttribute("style", "font-size:20px")
-    answerChoiceA.textContent = q.answerA;
-    answerChoiceB.textContent = q.answerB;
-    answerChoiceC.textContent = q.answerC;
-    answerChoiceD.textContent = q.answerD;
-}
-
-
-
-function checkAnswer(answer){
-    if( answer == questionList[currentQuestion].correct){
-        score++
-        answerIsCorrect();
-    } else{
-        answerIsWrong();
-    }
-    
-}
-
-function answerIsCorrect(){
-    alert("Correct!");
-}
-
-function answerIsWrong(){
-    alert("Incorrect!");
-}
-
-
 var questionList = [
     {
     question: "What does JS stand for?",
@@ -110,6 +41,77 @@ var questionList = [
     correct: "C" 
     },
 ];
+var lastQuestion = questionList.length - 1;
+
+// Timer
+var countDown = document.getElementById("countdown");
+
+var i = 60;
+
+function count() {
+    i--;
+    countDown.textContent = i;
+}
+
+setInterval(count, 1000);
+
+startBtn.addEventListener("click", startGame);
+
+function startGame() {
+    startBtn.classList.add("hide");
+    questionContainer.classList.remove("hide");
+    getQuestion();
+}
+
+function getQuestion() {
+    var q = questionList[currentQuestion];
+    questionElement.textContent = q.question;
+    questionElement.setAttribute("style", "padding:15px");
+    questionElement.setAttribute("style", "font-size:20px")
+    answerChoiceA.textContent = q.answerA;
+    answerChoiceB.textContent = q.answerB;
+    answerChoiceC.textContent = q.answerC;
+    answerChoiceD.textContent = q.answerD;
+}
+
+function getQuestion2() {
+    var q = questionList[currentQuestion + 1];
+    questionElement.textContent = q.question;
+    questionElement.setAttribute("style", "padding:15px");
+    questionElement.setAttribute("style", "font-size:20px")
+    answerChoiceA.textContent = q.answerA;
+    answerChoiceB.textContent = q.answerB;
+    answerChoiceC.textContent = q.answerC;
+    answerChoiceD.textContent = q.answerD;
+}
+
+function checkAnswer(answer){
+    if( answer == questionList[currentQuestion].correct){
+        score++
+        answerIsCorrect();
+        console.log(score);
+    } else{
+       answerIsWrong();
+       console.log(score);
+    }
+    if(currentQuestion < lastQuestion) {
+        currentQuestion++;
+        getQuestion();
+    }
+    
+}
+
+function answerIsCorrect(){
+    //document.getElementById(currentQuestion).style.backgroundColor = "#0f0";
+    alert("Correct!");
+}
+
+function answerIsWrong(){
+    alert("Incorrect!");
+}
+
+
+
 
 questionList[0].question
 questionList[0].answerA
