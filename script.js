@@ -7,6 +7,9 @@ var answerChoiceC = document.getElementById("C");
 var answerChoiceD = document.getElementById("D");
 var currentQuestion = 0;
 var score = 0;
+var scoreDiv = document.getElementById("score");
+var timesUp = document.getElementById("timesUp");
+var highscoreList = document.getElementById("highscores");
 var questionList = [
     {
     question: "What does JS stand for?",
@@ -46,21 +49,28 @@ var lastQuestion = questionList.length - 1;
 // Timer
 var countDown = document.getElementById("countdown");
 
-var i = 60;
+// Time to finish the quiz
+var i = 46;
 
+// Timer function
 function count() {
     i--;
     countDown.textContent = i;
+    setTimeout(count, 1000);
+    if(i < 0) {
+        scoreRenderTimesUp()
+        countDown.classList.add("hide");
+    }
 }
-
-setInterval(count, 1000);
 
 startBtn.addEventListener("click", startGame);
 
+// Function to begin the quiz and timer
 function startGame() {
     startBtn.classList.add("hide");
     questionContainer.classList.remove("hide");
     getQuestion();
+    count();
 }
 
 function getQuestion() {
@@ -74,17 +84,7 @@ function getQuestion() {
     answerChoiceD.textContent = q.answerD;
 }
 
-function getQuestion2() {
-    var q = questionList[currentQuestion + 1];
-    questionElement.textContent = q.question;
-    questionElement.setAttribute("style", "padding:15px");
-    questionElement.setAttribute("style", "font-size:20px")
-    answerChoiceA.textContent = q.answerA;
-    answerChoiceB.textContent = q.answerB;
-    answerChoiceC.textContent = q.answerC;
-    answerChoiceD.textContent = q.answerD;
-}
-
+// This funciton enables user to cycle through the questions and will determine if the answer was right or wrong
 function checkAnswer(answer){
     if( answer == questionList[currentQuestion].correct){
         score++
@@ -97,25 +97,39 @@ function checkAnswer(answer){
     if(currentQuestion < lastQuestion) {
         currentQuestion++;
         getQuestion();
+    } else{
+        scoreRender()
+        countDown.classList.add("hide");
     }
-    
 }
 
+// Functions for if answer is right or wrong, display alert
 function answerIsCorrect(){
-    //document.getElementById(currentQuestion).style.backgroundColor = "#0f0";
     alert("Correct!");
 }
 
 function answerIsWrong(){
     alert("Incorrect!");
+    countDown.textContent = i - 5;
 }
 
+function scoreRender(){
+    scoreDiv.style.display = "block";
+    scoreDiv.innerHTML = "Total Score: " + score + " out of 4";
+    questionContainer.classList.add("hide");
+}
 
+function scoreRenderTimesUp(){
+    timesUp.style.textAlign = "center";
+    timesUp.style.fontSize = "40px";
+    timesUp.style.paddingBottom = "30px";
+    timesUp.innerHTML = "Time's up!";
+    scoreDiv.style.display = "block";
+    scoreDiv.innerHTML = "Total Score: " + score + " out of 4";
+    questionContainer.classList.add("hide");
+}
 
+function viewHighscores(){
+    alert("hi");
+}
 
-questionList[0].question
-questionList[0].answerA
-questionList[0].answerB
-questionList[0].answerC
-questionList[0].answerD
-questionList[0].correct
