@@ -57,6 +57,7 @@ body {
 h1 {
     text-align: center;
 }
+
 .answer-btns-box {
     display: grid;
 }
@@ -86,5 +87,17 @@ p {
     top: 8px;
     left: 16px;
     font-size: 30px;
+}
+
+#addHighscore {
+    padding: 15px;
+    margin: auto;
+    box-shadow: 0 0 20px 3px;
+    display: none;
+    margin-top: 20px; 
+}
+
+textarea {
+    margin: 20px;
 }
    
