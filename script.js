@@ -149,19 +149,27 @@ function scoreRenderTimesUp(){
 addScoreBtn.addEventListener("click", addScoreAndInitials);
 
 function addScoreAndInitials () {
-    alert('hi')
+    var initials = userInput.value;
+    var scoreStorage = JSON.parse(localStorage.getItem("score"));
+    if(scoreStorage == null) {
+        scoreStorage = [];
+    }
+    var scoreObj = { score:score, initials:initials };
+    scoreStorage = scoreStorage.concat(scoreObj);
+    localStorage.setItem("score", JSON.stringify(scoreStorage));
+    userInput.classList.remove("hide");
     userNameScore.style.display = "block";
-   
-    
+    userNameScore.innerHTML = "";
+    scoreStorage.forEach(element => {
+        var listEl = document.createElement("li");
+        listEl.innerHTML = element.initials + " " + element.score;
+        userNameScore.appendChild(listEl);
+    });
 }
-
 
 // Function to generate high scores
 function viewHighscores(){
-    alert("hi");
     startBtn.classList.add("hide");
     addScoreBtn.classList.remove("hide");
+    alert("This button is not yet working properly. Come back later!")
 }
-
-localStorage.setItem("score", JSON.stringify(score));
-console.log("score");
