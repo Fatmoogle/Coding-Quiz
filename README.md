@@ -4,7 +4,7 @@ Link: https://fatmoogle.github.io/Coding-Quiz
 
 Fun and short quix game created using vanilla JavaScript. Answer correctly before time runs out!
 
-As one would expect, this class just keeps throwing harder and harder assignments towards us. This was by far the hardest one to wrap my head around. While it was difficult, it kept me engaged whenever I would see small steps in progress to making my quiz a reality. Here is how it happened using JavaScript programming.
+This was one of my first big JS endeavors. Here is how it happened!
 
 ### Assigning Variables
 
